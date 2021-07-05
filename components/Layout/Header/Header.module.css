@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0 30px;
+    background: white;
+    box-shadow: 0 0 2px 1px rgba(0,0,0,0.7);
+}
+
+.header ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.header li {
+    margin: 0 1rem;
+    font-size: 15px;
+    border: 1px solid #222222;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
