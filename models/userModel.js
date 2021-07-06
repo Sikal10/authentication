@@ -20,6 +20,15 @@ const userSchema = new mongoose.Schema({
     resetPasswordExpire: Date
 }, {timestamps: true});
 
+//match password in the database
+userSchema.methods.matchPasswords = async function (enteredPassword) {
+    return await bcrypt.compare(enteredPassword, this.password);
+};
+
+//get signed jwt token
+userSchema.methods.getSignedJwtToken = function () {
+    return jwt.sign({id: this._id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRE})
+}
 
 //hash and store password in the database
 userSchema.pre("save", async function (next) {
