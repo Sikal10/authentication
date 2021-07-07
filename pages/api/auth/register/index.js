@@ -1,5 +1,6 @@
 import User from "../../../../models/userModel";
 import connectDB from "../../../../db/db";
+import sendTokenResponse from "../../../../utils/sendToken";
 
 connectDB();
 
@@ -24,7 +25,7 @@ const handler = async (req, res) => {
     //create user
     const user = await User.create({name, email, password});
 
-    res.status(200).json({success: true, message: "user created successfully", data: user})
+    sendTokenResponse(user, 200, res, "user created successfully");
 }
 
 export default handler;
