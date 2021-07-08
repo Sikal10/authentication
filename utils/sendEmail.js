@@ -15,11 +15,8 @@ const sendEmail = async (res, to, from, subject, content) => {
            console.log(body);
            console.log(error)
        });
-
-       res.status(200).json({message: "Email sent. Check your email!"});
    } catch (err) {
-       console.log(err);
-       res.status(500).json({message: "Email could not be sent."})
+       return res.status(500).json({message: "Something went wrong, could not process your request."})
    }
 };
 
