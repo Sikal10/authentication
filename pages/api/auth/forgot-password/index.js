@@ -16,15 +16,23 @@ const handler = async (req, res) => {
         if (!user) return res.status(401).json({message: `There is no user with that email`});
 
         const resetToken = await user.getResetPasswordToken();
-        await user.save();
+        await user.save({validateBeforeSave: true});
 
-        const resetUrl = `${process.env.CLIENT_URL}/passwordreset/${resetToken}`
+        //create reset url
+        const resetUrl = `${process.env.CLIENT_URL}/auth/resetpassword?reset=${resetToken}`
         const message = `Click to reset password. ${resetUrl}`
 
-        await sendEmail(res, email, "noreply@gmail.com", "Password Reset", message)
+        try {
+            await sendEmail(res, email, "noreply@gmail.com", "Password Reset", message)
+        } catch (err) {
+            console.log(err);
+            user.resetPasswordToken = undefined;
+            user.resetPasswordExpired = undefined;
 
+            await user.save({validateBeforeSave: false});
+        }
     } catch (err) {
-        console.log(err)
+        console.log(err.message)
     }
 
 

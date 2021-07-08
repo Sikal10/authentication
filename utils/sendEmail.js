@@ -10,12 +10,17 @@ const sendEmail = async (res, to, from, subject, content) => {
            text: content
        }
 
-    await mg.messages().send(data, function (error, body) {
-        console.log(body);
-        console.log(error)
-    });
+   try {
+       await mg.messages().send(data, function (error, body) {
+           console.log(body);
+           console.log(error)
+       });
 
-    res.status(200).json({message: "Email sent. Check your email!"});
+       res.status(200).json({message: "Email sent. Check your email!"});
+   } catch (err) {
+       console.log(err);
+       res.status(500).json({message: "Email could not be sent."})
+   }
 };
 
 export default sendEmail;
