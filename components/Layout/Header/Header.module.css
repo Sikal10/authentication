@@ -18,7 +18,7 @@
 .header li {
     margin: 0 1rem;
     font-size: 15px;
-    border: 1px solid #222222;
+    border: 1px solid #222222 !important;
     border-radius: 5px;
     padding: 8px;
 }

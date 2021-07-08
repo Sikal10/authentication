@@ -1,5 +1,4 @@
 import Header from "./Header/Header";
-import classes from "./Layout.module.css";
 
 const Layout = ({children}) => {
     return (

@@ -80,4 +80,8 @@
     justify-content: center;
     align-items: center;
 }
-
+@media (max-width: 768px) {
+    .register {
+        margin: 10rem auto;
+    }
+}

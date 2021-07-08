@@ -1,6 +1,9 @@
 import User from "../../../models/userModel";
 import {protect} from "../../../middlewares/auth";
 
+// @desc: Get current logged in user.
+// @access: Private
+
 const handler = async (req, res) => {
     if (req.method !== "GET") {
         return res.status(400).json(`Method ${req.method} is not allowed`);
